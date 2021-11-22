@@ -280,7 +280,6 @@ pull_cached_stages() {
   if _is_aws_ecr_public; then
     _aws_get_image_tags
     local tag
-    echo "debug_a1r $(_get_full_stages_image_name) "
     for tag in "${tags[@]}"; do
       docker pull "$(_get_full_stages_image_name)":"$tag" || true
     done

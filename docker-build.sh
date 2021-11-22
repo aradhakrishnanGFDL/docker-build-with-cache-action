@@ -177,7 +177,6 @@ _aws_get_image_tags() {
   mapfile -t tags < <(_aws ecr-public describe-image-tags --repository-name "$INPUT_IMAGE_NAME_ONLY"-stages | jq ".imageTagDetails[].imageTag")
   tags=( "${tags[@]#\"}" )
   tags=( "${tags[@]%\"}" )
-  echo $tags
 }
 
 _login_to_aws_ecr() {

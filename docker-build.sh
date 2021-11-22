@@ -278,6 +278,7 @@ pull_cached_stages() {
     _aws_get_image_tags
     local tag
     for tag in "${tags[@]}"; do
+      echo " debug debug $(_get_full_stages_image_name) " #a1r
       docker pull "$(_get_full_stages_image_name)":"$tag" || true
     done
   else

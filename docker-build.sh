@@ -177,7 +177,6 @@ _aws_get_image_tags() {
   mapfile -t tags < <(_aws ecr-public describe-image-tags --repository-name "$INPUT_IMAGE_NAME_ONLY"-stages | jq ".imageTagDetails[].imageTag")
   tags=( "${tags[@]#\"}" )
   tags=( "${tags[@]%\"}" )
-  echo $tags
 }
 
 _login_to_aws_ecr() {
@@ -275,7 +274,6 @@ pull_cached_stages() {
     return
   fi
   echo -e "\n[Action Step] Pulling image..."
-  #_is_aws_ecr_public = true
 
   if _is_aws_ecr_public; then
     _aws_get_image_tags

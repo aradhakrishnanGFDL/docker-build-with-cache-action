@@ -173,7 +173,7 @@ _aws_get_public_ecr_registry_name() {
 }
 
 _aws_get_image_tags() {
-  INPUT_IMAGE_NAME = echo $INPUT_IMAGE_NAME|cut -d/ -f2-   #the INPUT_IMAGE_NAME contains the registry alias prefix for the public ecr and including this throws an error, so lets cut it and try.
+  INPUT_IMAGE_NAME=$(echo ${INPUT_IMAGE_NAME}|cut -d/ -f2-)   #the INPUT_IMAGE_NAME contains the registry alias prefix for the public ecr and including this throws an error, so lets cut it and try.
   mapfile -t tags < <(_aws ecr-public describe-image-tags --repository-name "$INPUT_IMAGE_NAME"-stages | jq ".imageTagDetails[].imageTag")
   tags=( "${tags[@]#\"}" )
   tags=( "${tags[@]%\"}" )

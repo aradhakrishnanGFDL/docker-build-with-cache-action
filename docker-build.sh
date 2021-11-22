@@ -273,7 +273,8 @@ pull_cached_stages() {
     return
   fi
   echo -e "\n[Action Step] Pulling image..."
-  echo "debug_a1r is_aws_ecr_public $(_is_aws_ecr_public)"
+  echo "debug_a1r is_aws_ecr_public: $(_is_aws_ecr_public)"
+  echo "debug_a1r _is_aws_ecr_private: $(_is_aws_ecr_private)"
   if _is_aws_ecr_public; then
     _aws_get_image_tags
     local tag

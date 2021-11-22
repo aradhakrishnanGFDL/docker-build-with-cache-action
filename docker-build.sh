@@ -276,9 +276,12 @@ pull_cached_stages() {
   echo "debug_a1r $INPUT_REGISTRY s_aws_ecr_public: $(_is_aws_ecr_public)"
   echo "debug_a1r _is_aws_ecr_private: $(_is_aws_ecr_private)"
   _is_aws_ecr_public = 1
+  echo "debug_a1r $INPUT_REGISTRY s_aws_ecr_public: $(_is_aws_ecr_public)"
+
   if _is_aws_ecr_public; then
     _aws_get_image_tags
     local tag
+    echo "debug_a1r $(_get_full_stages_image_name) "
     for tag in "${tags[@]}"; do
       echo " debug debug $(_get_full_stages_image_name) " #a1r
       docker pull "$(_get_full_stages_image_name)":"$tag" || true

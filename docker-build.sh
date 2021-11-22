@@ -275,7 +275,6 @@ pull_cached_stages() {
     return
   fi
   echo -e "\n[Action Step] Pulling image..."
-  _is_aws_ecr_public = true
 
   if _is_aws_ecr_public; then
     _aws_get_image_tags
